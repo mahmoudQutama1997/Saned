@@ -1,16 +1,62 @@
 {% extends 'base.html' %}
 {% block title %}طلباتي - ساند{% endblock %}
+<<<<<<< HEAD
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+  <div class="mb-4 text-start">
+    <a href="{% url 'beneficiary_dashboard' %}" class="btn btn-outline-success rounded-pill px-4">العودة إلى لوحة التحكم</a>
+  </div>
+
+=======
 
 {% block content %}
 <div class="container mt-4">
       <div class="mb-4 text-start">
     <a href="{% url 'beneficiary_dashboard' %}" class="btn btn-outline-success rounded-pill px-4"> العودة إلى لوحة التحكم</a>
   </div>
+>>>>>>> 77353484255c112d192f39374dd0fa6f25bd1eac
   <h2 class="mb-4 text-center text-success">📄 طلباتي السابقة</h2>
 
   {% if aid_requests %}
     <div class="row">
       {% for request in aid_requests %}
+<<<<<<< HEAD
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg border-0 rounded-4 h-100 overflow-hidden">
+            <img src="{% static 'images/2739.jpg' %}" class="card-img-top" alt="Aid image" 
+                 style="height: 200px; object-fit: cover;">
+
+            <div class="card-body d-flex flex-column justify-content-between h-100">
+              <div>
+                <h5 class="card-title fw-bold text-primary">{{ request.type }}</h5>
+                <p class="card-text text-muted small mb-2">{{ request.description|truncatechars:120 }}</p>
+                <p class="card-text mb-2 text-success fw-semibold">
+                  💰 {{ request.amount_requested }} شيكل
+                </p>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-end mt-auto pt-3 border-top pt-3">
+                <div>
+                  <span class="badge rounded-pill px-3 py-2 
+                    {% if request.status == 'pending' %}bg-warning text-dark
+                    {% elif request.status == 'approved' %}bg-success
+                    {% elif request.status == 'rejected' %}bg-danger
+                    {% else %}bg-info{% endif %}">
+                    {{ request.get_status_display }}
+                  </span>
+                  <br>
+                  <small class="text-muted">{{ request.created_at|date:"d M Y" }}</small>
+                </div>
+
+                <form action="{% url 'delete_aid_request' request.id %}" method="post" 
+                      onsubmit="return confirm('هل أنت متأكد من حذف هذا الطلب؟');">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3">
+                    🗑️ حذف
+                  </button>
+                </form>
+=======
         <div class="col-md-6 mb-4">
           <div class="card shadow-sm border-0 rounded-4">
             <div class="card-body">
@@ -28,6 +74,7 @@
                 </span>
                 <br>
                 <small class="text-muted">{{ request.created_at|date:"d M Y" }}</small>
+>>>>>>> 77353484255c112d192f39374dd0fa6f25bd1eac
               </div>
             </div>
           </div>
@@ -35,7 +82,16 @@
       {% endfor %}
     </div>
   {% else %}
+<<<<<<< HEAD
+    <div class="alert alert-info text-center rounded-4 shadow-sm p-4">
+      لا يوجد طلبات مسجلة بعد.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
+=======
     <div class="alert alert-info text-center">لا يوجد طلبات مسجلة بعد.</div>
   {% endif %}
 </div>
 {% endblock %}
+>>>>>>> 77353484255c112d192f39374dd0fa6f25bd1eac

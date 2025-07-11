@@ -1,11 +1,19 @@
 from django.shortcuts import render, redirect
 from .models import *
+<<<<<<< HEAD
+from django.http import JsonResponse,HttpResponseForbidden
+import bcrypt, json
+from django.contrib import messages
+
+
+=======
 from django.http import JsonResponse
 import bcrypt, json
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse,HttpResponseForbidden
 from django.utils import timezone
+>>>>>>> 77353484255c112d192f39374dd0fa6f25bd1eac
 def index(request):
     return render(request, 'index.html')
 
@@ -84,20 +92,39 @@ def login_user(request):
         elif user.role == 'donor':
             redirect_url = '/donor/dashboard'
         elif user.role == 'ngo':
+<<<<<<< HEAD
+            redirect_url = '/ngo/dashboard'
+=======
             redirect_url ='/ngo/dashboard'
+>>>>>>> 77353484255c112d192f39374dd0fa6f25bd1eac
 
         return JsonResponse({'success': True, 'redirect_url': redirect_url})
 
     return JsonResponse({'success': False, 'errors': {'general': 'طلب غير صالح'}})
+<<<<<<< HEAD
+
+def logout_user(request):
+    request.session.flush()
+    return redirect('/')
+=======
 def logout(request):
     request.session.flush()
     return redirect('login')
    
+>>>>>>> 77353484255c112d192f39374dd0fa6f25bd1eac
 
 def beneficiary_dashboard(request):
     if 'user_id' not in request.session or request.session.get('role') != 'beneficiary':
         return redirect('login')
+<<<<<<< HEAD
+    user_id = request.session.get('user_id')
+    recent_requests = AidRequest.objects.filter(beneficiary_id=user_id).order_by('-created_at')[:3]
+    return render(request, 'beneficiary/dashboard.html', {
+        'recent_requests': recent_requests
+    })
+=======
     return render(request, 'beneficiary/dashboard.html')
+>>>>>>> 77353484255c112d192f39374dd0fa6f25bd1eac
 
 def my_requests(request):
     if 'user_id' not in request.session:
@@ -158,6 +185,26 @@ def submit_aid_request(request):
 
         return redirect('beneficiary_dashboard')  
     return HttpResponseForbidden("طريقة غير مسموح بها.")
+<<<<<<< HEAD
+
+def delete_aid_request(request, request_id):
+    if 'user_id' not in request.session or request.session.get('role') != 'beneficiary':
+        return redirect('login')
+
+    aid_request = AidRequest.objects.filter(id=request_id, beneficiary_id=request.session['user_id']).first()
+
+    if not aid_request:
+        messages.error(request, "الطلب غير موجود أو غير مسموح لك بحذفه.")
+        return redirect('my_requests')
+
+    if aid_request.status != 'pending':
+        messages.error(request, "لا يمكنك حذف طلب تمت مراجعته أو الموافقة عليه.")
+        return redirect('my_requests')
+
+    aid_request.delete()
+    messages.success(request, "تم حذف الطلب بنجاح.")
+    return redirect('my_requests')
+=======
 def ngo_dashboard(request):
     if request.method=="POST":
         organization_name=request.POST.get('organization_name')
@@ -283,3 +330,4 @@ def donate_to_campaign(request,campaign_id):
                 'campaign':campaign,
                 
             })
+>>>>>>> 77353484255c112d192f39374dd0fa6f25bd1eac
