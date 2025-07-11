@@ -15,6 +15,7 @@ def register(request):
         "القدس", "رام الله", "البيرة", "نابلس", "الخليل", "بيت لحم",
         "قلقيلية", "طولكرم", "جنين", "سلفيت", "أريحا", "طوباس"
     ]    
+
     return render(request, 'auth/register.html', {'cities': cities})
 
 def login(request):
@@ -46,10 +47,11 @@ def create_user(request):
         )
 
         if data.get('role') == 'ngo' and files.get('licenseDocument'):
-            NGOProfile.objects.create(
-                organization_name=f"{user.first_name} {user.last_name}",
-                license_document=files['licenseDocument'],
-                user=user
+            if not NGOProfile.objects.filter(user=user).exists():
+               NGOProfile.objects.create(
+                 organization_name=f"{user.first_name} {user.last_name}",
+                 license_document=files['licenseDocument'],
+                 user=user
             )
 
         request.session['user_id'] = user.id

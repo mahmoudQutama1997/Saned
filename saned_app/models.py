@@ -62,6 +62,10 @@ class User(models.Model):
         ('ngo', 'NGO'),
         ('admin', 'Admin')
     ])
+    is_staff=models.BooleanField(default=False)
+    is_superuser=models.BooleanField(default=False)
+    is_active=models.BooleanField(default=False)
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -117,4 +121,3 @@ class CampaignDonation(models.Model):
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="campaign_donations")
     amount = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-
