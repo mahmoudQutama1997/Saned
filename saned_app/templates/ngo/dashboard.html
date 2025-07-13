@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}لوحة تحكم الجمعية{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <div class="mb-5 text-center">
+        <h2 class="fw-bold text-success">🎯 لوحة تحكم الجمعية</h2>
+        <p class="text-muted fs-6">أهلاً بك في نظام ساند، يمكنك إدارة حملاتك وطلبات منطقتك بكل سهولة</p>
+    </div>
+
+    <div class="card mb-5 shadow-sm border-0 rounded-4">
+        <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+            <div>
+                <h5 class="mb-2">📌 <strong>{{ profile.organization_name }}</strong></h5>
+            </div>
+            <div>
+                {% if profile.approved %}
+                <span class="badge bg-success fs-6 px-4 py-2 rounded-pill">تم الاعتماد ✅</span>
+                {% else %}
+                <span class="badge bg-warning text-dark fs-6 px-4 py-2 rounded-pill">قيد المراجعة ⏳</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <a href="{% url 'create_campaign_form' %}" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-4 text-center py-4 h-100">
+                        <div class="fs-2 mb-2 text-success">➕</div>
+                        <h6 class="fw-bold text-dark">إنشاء حملة جديدة</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="{% url 'region_requests' %}" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-4 text-center py-4 h-100">
+                        <div class="fs-2 mb-2 text-primary">📄</div>
+                        <h6 class="fw-bold text-dark">عرض طلبات منطقتي</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="{% url 'my_campaigns' %}" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-4 text-center py-4 h-100">
+                        <div class="fs-2 mb-2 text-secondary">📜</div>
+                        <h6 class="fw-bold text-dark">حملاتي</h6>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="{% url 'adopted_requests' %}" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm rounded-4 text-center py-4 h-100">
+                        <div class="fs-2 mb-2 text-warning">📦</div>
+                        <h6 class="fw-bold text-dark">الطلبات التي تم تبنيها</h6>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

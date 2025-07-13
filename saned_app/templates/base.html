@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}ساند - Saned{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+
+<body>
+  
+
+  <nav class="navbar navbar-expand-lg navbar-custom shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="/">Saned</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 gap-2">
+          <li class="nav-item"><a class="nav-link" href="/about/">من نحن</a></li>
+          <li class="nav-item"><a class="nav-link" href="/campaigns/">الحملات</a></li>
+          {% if request.session.user_id %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">تسجيل الخروج</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">تسجيل الدخول</a></li>
+          {% endif %}
+
+          <li class="nav-item_dropdown">
+    <a class="nav-link" href="#" role="button" id="notificationsDropdown">🔔
+      <span id="notificationCount">0</span>
+    </a>
+    <ul class=""  id="notificationList">
+        <li>لا توجد اشعارات جديدة</li>
+    </ul>
+  </li>
+        </ul>
+      </div>
+    </div>
+
+    
+  </nav>
+
+  <main class="container py-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="text-center py-3 border-top border-light mt-5 text-muted">
+    <p class="mb-0">&copy; 2025 Saned - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function fetchNotifications() {
+  fetch('/notifications/')
+    .then(res => res.json())
+    .then(data => {
+      const count = data.count;
+      const list = document.getElementById("notificationList");
+      const badge = document.getElementById("notificationCount");
+
+      badge.textContent = count > 0 ? count : '';
+
+      list.innerHTML = '';
+
+      if (count === 0) {
+        list.innerHTML = '<li class="dropdown-item text-muted">لا توجد إشعارات جديدة</li>';
+      } else {
+        data.notifications.forEach(n => {
+          const li = document.createElement("li");
+          li.className = "dropdown-item";
+          li.textContent = n.message + " (" + n.created_at + ")";
+          list.appendChild(li);
+        });
+      }
+    });
+}
+
+
+fetchNotifications();
+setInterval(fetchNotifications, 10000);
+
+
+document.getElementById("notificationsDropdown").addEventListener("click", function () {
+  fetch("/notifications/mark-read/", {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCookie('csrftoken'),
+      "Content-Type": "application/json"
+    }
+  }).then(() => {
+    document.getElementById("notificationCount").textContent = '';
+  });
+});
+
+  </script>
+</body>
+</html>
