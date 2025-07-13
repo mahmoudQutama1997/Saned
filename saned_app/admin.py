@@ -1,4 +1,5 @@
 from django.contrib import admin
+<<<<<<< HEAD
 from .models import User, NGOProfile, AidRequest, Campaign, Donation, CampaignDonation
 
 
@@ -53,3 +54,7 @@ class CampaignDonationAdmin(admin.ModelAdmin):
     list_display = ('donor', 'campaign', 'amount', 'created_at')
     search_fields = ('donor__email', 'campaign__title')
     readonly_fields = ('created_at',)
+=======
+
+# Register your models here.
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8

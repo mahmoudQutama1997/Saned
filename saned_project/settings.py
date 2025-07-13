@@ -48,8 +48,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+<<<<<<< HEAD
     'django.middleware.csrf.CsrfViewMiddleware',
 
+=======
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
 ]
 
 ROOT_URLCONF = 'saned_project.urls'
@@ -73,6 +76,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'saned_project.wsgi.application'
 
 
+<<<<<<< HEAD
 DATABASES = {
    
     'default': {
@@ -99,6 +103,25 @@ TIME_ZONE = 'Asia/Gaza'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+=======
+# Database
+# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'saned_db',
+        'USER': 'root',  
+        'PASSWORD': '5781',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
 
 
 # Password validation
@@ -138,4 +161,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+=======
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8

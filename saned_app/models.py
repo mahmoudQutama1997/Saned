@@ -91,7 +91,10 @@ class AidRequest(models.Model):
         ('delivered', 'Delivered'),
     ], default='pending')
     beneficiary = models.ForeignKey(User, on_delete=models.CASCADE, related_name="aid_requests")
+<<<<<<< HEAD
     ngo = models.ForeignKey(NGOProfile, on_delete=models.SET_NULL, null=True, blank=True)
+=======
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -118,6 +121,7 @@ class CampaignDonation(models.Model):
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name="campaign_donations")
     amount = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
+<<<<<<< HEAD
 
 class Notifications(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="notifications",null=True,blank=True)
@@ -130,3 +134,5 @@ class Notifications(models.Model):
         target=self.user.email if self.user else f"Role:{self.role}"
         return f"Notification for {target}:{self.message[:50]}"
       
+=======
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8

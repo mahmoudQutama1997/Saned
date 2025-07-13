@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}طلباتي - ساند{% endblock %}
+<<<<<<< HEAD
 {% load static %}
 
 {% block content %}
@@ -8,11 +9,20 @@
     <a href="{% url 'beneficiary_dashboard' %}" class="btn btn-outline-success rounded-pill px-4">العودة إلى لوحة التحكم</a>
   </div>
 
+=======
+
+{% block content %}
+<div class="container mt-4">
+      <div class="mb-4 text-start">
+    <a href="{% url 'beneficiary_dashboard' %}" class="btn btn-outline-success rounded-pill px-4"> العودة إلى لوحة التحكم</a>
+  </div>
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
   <h2 class="mb-4 text-center text-success">📄 طلباتي السابقة</h2>
 
   {% if aid_requests %}
     <div class="row">
       {% for request in aid_requests %}
+<<<<<<< HEAD
         <div class="col-md-4 mb-4">
           <div class="card shadow-lg border-0 rounded-4 h-100 overflow-hidden">
             <img src="{% static 'images/2739.jpg' %}" class="card-img-top" alt="Aid image" 
@@ -47,6 +57,25 @@
                     🗑️ حذف
                   </button>
                 </form>
+=======
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">{{ request.type }}</h5>
+              <p class="card-text text-muted mb-2">{{ request.description|truncatechars:120 }}</p>
+              <p class="card-text mb-2">💰 <strong>{{ request.amount_requested }} شيكل</strong></p>
+
+              <div class="text-end">
+                <span class="badge rounded-pill 
+                  {% if request.status == 'pending' %}bg-warning text-dark
+                  {% elif request.status == 'approved' %}bg-success
+                  {% elif request.status == 'rejected' %}bg-danger
+                  {% else %}bg-info{% endif %}">
+                  {{ request.get_status_display }}
+                </span>
+                <br>
+                <small class="text-muted">{{ request.created_at|date:"d M Y" }}</small>
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
               </div>
             </div>
           </div>
@@ -54,9 +83,13 @@
       {% endfor %}
     </div>
   {% else %}
+<<<<<<< HEAD
     <div class="alert alert-info text-center rounded-4 shadow-sm p-4">
       لا يوجد طلبات مسجلة بعد.
     </div>
+=======
+    <div class="alert alert-info text-center">لا يوجد طلبات مسجلة بعد.</div>
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
   {% endif %}
 </div>
 {% endblock %}

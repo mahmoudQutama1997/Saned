@@ -20,7 +20,10 @@ main.container {
     justify-content: space-between;
     gap: 60px;
     padding: 60px 10%;
+<<<<<<< HEAD
     min-height: 100vh;
+=======
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
 }
 
 .welcome-text {

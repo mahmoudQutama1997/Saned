@@ -5,16 +5,28 @@
   <meta charset="UTF-8">
   <title>{% block title %}ساند - Saned{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
 </head>
 
+<<<<<<< HEAD
 <body>
   
 
   <nav class="navbar navbar-expand-lg navbar-custom shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="/">Saned</a>
+=======
+<body class="d-flex flex-column min-vh-100">
+
+  <nav class="navbar navbar-expand-lg navbar-light navbar-custom shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" href="/">Saned</a>
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,6 +40,7 @@
           {% else %}
             <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">تسجيل الدخول</a></li>
           {% endif %}
+<<<<<<< HEAD
 
           <li class="nav-item_dropdown">
     <a class="nav-link" href="#" role="button" id="notificationsDropdown">🔔
@@ -49,10 +62,23 @@
   </main>
 
   <footer class="text-center py-3 border-top border-light mt-5 text-muted">
+=======
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container flex-grow-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="text-center py-3 border-top text-muted mt-auto">
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
     <p class="mb-0">&copy; 2025 Saned - جميع الحقوق محفوظة</p>
   </footer>
 
   <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<<<<<<< HEAD
 <script>
 function getCookie(name) {
     let cookieValue = null;
@@ -112,5 +138,7 @@ document.getElementById("notificationsDropdown").addEventListener("click", funct
 });
 
   </script>
+=======
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
 </body>
 </html>

@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+<<<<<<< HEAD
     # AUTH / GENERAL
     path('', views.index, name='index'),
     path('register/', views.register, name='register'),
@@ -35,3 +36,17 @@ urlpatterns = [
     path('notifications/mark-read/', views.mark_notifications_read, name='notifications_read'),
      path('notifications/create/', views.create_notification, name='create_notification'),
 ]
+=======
+    path('', views.index, name='index'),
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
+    path('create_user/', views.create_user, name='create_user'),
+    path('login_user/', views.login_user, name='login_user'),
+    path('logout/', views.logout_user, name='logout'),
+    path('beneficiary/dashboard/', views.beneficiary_dashboard, name='beneficiary_dashboard'),
+    path('beneficiary/request/', views.aid_request_form, name='aid_request_form'),
+    path('beneficiary/my-requests/', views.my_requests, name='my_requests'),
+    path('beneficiary/aid-request/', views.aid_request_form, name='aid_request_form'),
+    path('beneficiary/submit-request/', views.submit_aid_request, name='submit_aid_request'),
+]
+>>>>>>> 5f22ec3070a6fead3a7450fa5200a53541b3fca8
